@@ -7,10 +7,10 @@
 -- 1. USERS (Admin, Sales, Warehouse, Accounts)
 INSERT INTO users (id, name, email, password_hash, role)
 VALUES
-    ('00000000-0000-0000-0000-000000000001', 'Admin Officer', 'admin@example.com', '$2a$10$wE0i81sC8B4lZpDq9zK8reWl96D7l97R/vY8Jv63/FwB8aV09U.j6', 'Admin'),
-    ('00000000-0000-0000-0000-000000000002', 'Sarah Sales Lead', 'sales@example.com', '$2a$10$wE0i81sC8B4lZpDq9zK8reWl96D7l97R/vY8Jv63/FwB8aV09U.j6', 'Sales'),
-    ('00000000-0000-0000-0000-000000000003', 'Warren Warehouse Manager', 'warehouse@example.com', '$2a$10$wE0i81sC8B4lZpDq9zK8reWl96D7l97R/vY8Jv63/FwB8aV09U.j6', 'Warehouse'),
-    ('00000000-0000-0000-0000-000000000004', 'Alice Accounts Exec', 'accounts@example.com', '$2a$10$wE0i81sC8B4lZpDq9zK8reWl96D7l97R/vY8Jv63/FwB8aV09U.j6', 'Accounts')
+    ('00000000-0000-0000-0000-000000000001', 'Admin Officer', 'admin@example.com', '$2a$10$YPey34yyCks13CiDMYAwJOMjIM1MPfAExdjm0e6BMpxruCe3aUZz.', 'Admin'),
+    ('00000000-0000-0000-0000-000000000002', 'Sarah Sales Lead', 'sales@example.com', '$2a$10$YPey34yyCks13CiDMYAwJOMjIM1MPfAExdjm0e6BMpxruCe3aUZz.', 'Sales'),
+    ('00000000-0000-0000-0000-000000000003', 'Warren Warehouse Manager', 'warehouse@example.com', '$2a$10$YPey34yyCks13CiDMYAwJOMjIM1MPfAExdjm0e6BMpxruCe3aUZz.', 'Warehouse'),
+    ('00000000-0000-0000-0000-000000000004', 'Alice Accounts Exec', 'accounts@example.com', '$2a$10$YPey34yyCks13CiDMYAwJOMjIM1MPfAExdjm0e6BMpxruCe3aUZz.', 'Accounts')
 ON CONFLICT (email) DO NOTHING;
 
 -- 2. PRODUCTS (10 Real Wholesale / Industrial / Tech sample products)
