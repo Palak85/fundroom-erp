@@ -16,17 +16,24 @@ const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
-// Security middleware
-app.use(helmet());
-
-// CORS configuration
-const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173', clientUrl],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+// Security middleware (relaxed crossOriginResourcePolicy for external frontend)
+app.use(helmet({
+  crossOriginResourcePolicy: false
 }));
+
+// CORS configuration (allow Vercel, localhost, and custom client URLs)
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow any origin for seamless cross-domain API access
+    callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
+}));
+
+// Enable pre-flight across all routes
+app.options('*', cors());
 
 // Body parsers
 app.use(express.json());
@@ -37,8 +44,8 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
+// Health check endpoint (available at both /api/health and /health)
+app.get(['/api/health', '/health', '/'], (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Mini ERP + CRM API is running healthy',
@@ -46,13 +53,21 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// API Routes
+// API Routes with /api prefix
 app.use('/api/auth', authRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/challans', challanRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/users', userRoutes);
+
+// Direct fallback routes (without /api prefix) for flexibility
+app.use('/auth', authRoutes);
+app.use('/customers', customerRoutes);
+app.use('/products', productRoutes);
+app.use('/challans', challanRoutes);
+app.use('/dashboard', dashboardRoutes);
+app.use('/users', userRoutes);
 
 // 404 Route Handler
 app.use('*', (req, res) => {
