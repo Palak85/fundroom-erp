@@ -119,6 +119,42 @@ CREATE INDEX IF NOT EXISTS idx_stock_movements_created_at ON stock_movements(cre
 CREATE INDEX IF NOT EXISTS idx_customer_followups_customer_id ON customer_followups(customer_id);
 
 -- ============================================================
+-- ROW LEVEL SECURITY (RLS) & ACCESS POLICIES
+-- ============================================================
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE customer_followups ENABLE ROW LEVEL SECURITY;
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+ALTER TABLE stock_movements ENABLE ROW LEVEL SECURITY;
+ALTER TABLE challans ENABLE ROW LEVEL SECURITY;
+ALTER TABLE challan_items ENABLE ROW LEVEL SECURITY;
+
+-- Allow full access for backend service_role and authenticated queries
+DO $$
+BEGIN
+    DROP POLICY IF EXISTS "Service role full access on users" ON users;
+    CREATE POLICY "Service role full access on users" ON users FOR ALL USING (true) WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Service role full access on customers" ON customers;
+    CREATE POLICY "Service role full access on customers" ON customers FOR ALL USING (true) WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Service role full access on customer_followups" ON customer_followups;
+    CREATE POLICY "Service role full access on customer_followups" ON customer_followups FOR ALL USING (true) WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Service role full access on products" ON products;
+    CREATE POLICY "Service role full access on products" ON products FOR ALL USING (true) WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Service role full access on stock_movements" ON stock_movements;
+    CREATE POLICY "Service role full access on stock_movements" ON stock_movements FOR ALL USING (true) WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Service role full access on challans" ON challans;
+    CREATE POLICY "Service role full access on challans" ON challans FOR ALL USING (true) WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Service role full access on challan_items" ON challan_items;
+    CREATE POLICY "Service role full access on challan_items" ON challan_items FOR ALL USING (true) WITH CHECK (true);
+END $$;
+
+-- ============================================================
 -- POSTGRESQL ATOMIC FUNCTION FOR CHALLAN CONFIRMATION
 -- ============================================================
 CREATE OR REPLACE FUNCTION confirm_sales_challan(
