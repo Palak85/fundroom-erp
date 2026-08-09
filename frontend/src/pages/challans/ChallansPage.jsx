@@ -13,10 +13,8 @@ import {
   Plus,
   Eye,
   Building2,
-  Calendar,
-  Filter,
-  CheckCircle2,
   Clock,
+  CheckCircle2,
   XCircle
 } from 'lucide-react';
 
@@ -65,14 +63,14 @@ export const ChallansPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#5E72C6] uppercase tracking-wider mb-1">
             Sales & Delivery
           </div>
-          <h2 className="text-2xl font-black text-white flex items-center gap-2">
-            <FileSpreadsheet className="w-7 h-7 text-emerald-400" />
+          <h2 className="text-2xl font-extrabold text-[#1E222B] flex items-center gap-2">
+            <FileSpreadsheet className="w-7 h-7 text-[#5E72C6]" />
             Sales Delivery Challans
           </h2>
-          <p className="text-sm text-slate-400 mt-0.5">
+          <p className="text-sm text-[#77767D] font-medium mt-0.5">
             Manage dispatch vouchers, draft orders, and confirmed inventory deductions
           </p>
         </div>
@@ -80,7 +78,7 @@ export const ChallansPage = () => {
         {canCreate && (
           <Link
             to="/challans/new"
-            className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-950/40 flex items-center gap-2 transition-all"
+            className="btn-primary"
           >
             <Plus className="w-4 h-4" />
             <span>Generate New Challan</span>
@@ -89,7 +87,7 @@ export const ChallansPage = () => {
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="p-4 rounded-3xl bg-white border border-[#DCE0EB] shadow-card flex flex-col md:flex-row gap-4 items-center justify-between">
         <SearchInput
           value={search}
           onChange={(val) => {
@@ -100,23 +98,23 @@ export const ChallansPage = () => {
         />
 
         {/* Status Filter Tabs */}
-        <div className="flex items-center gap-1.5 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700/80 w-full md:w-auto overflow-x-auto">
+        <div className="flex items-center gap-1.5 bg-[#EEF0F6] p-1.5 rounded-2xl border border-[#DCE0EB] w-full md:w-auto overflow-x-auto">
           <button
             onClick={() => { setStatus(''); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
               status === ''
-                ? 'bg-slate-700 text-white shadow'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-white text-[#1E222B] shadow-sm'
+                : 'text-[#77767D] hover:text-[#1E222B]'
             }`}
           >
             All Status
           </button>
           <button
             onClick={() => { setStatus('DRAFT'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
               status === 'DRAFT'
-                ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                : 'text-slate-400 hover:text-amber-400'
+                ? 'bg-white text-[#C47D0B] shadow-sm border border-[#FDE5BE]'
+                : 'text-[#77767D] hover:text-[#C47D0B]'
             }`}
           >
             <Clock className="w-3.5 h-3.5" />
@@ -124,10 +122,10 @@ export const ChallansPage = () => {
           </button>
           <button
             onClick={() => { setStatus('CONFIRMED'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
               status === 'CONFIRMED'
-                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                : 'text-slate-400 hover:text-emerald-400'
+                ? 'bg-white text-[#5E72C6] shadow-sm border border-[#D5DEF7]'
+                : 'text-[#77767D] hover:text-[#5E72C6]'
             }`}
           >
             <CheckCircle2 className="w-3.5 h-3.5" />
@@ -135,10 +133,10 @@ export const ChallansPage = () => {
           </button>
           <button
             onClick={() => { setStatus('CANCELLED'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
               status === 'CANCELLED'
-                ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
-                : 'text-slate-400 hover:text-rose-400'
+                ? 'bg-white text-[#D30F38] shadow-sm border border-[#F9CCD4]'
+                : 'text-[#77767D] hover:text-[#D30F38]'
             }`}
           >
             <XCircle className="w-3.5 h-3.5" />
@@ -148,7 +146,7 @@ export const ChallansPage = () => {
       </div>
 
       {/* Challan Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+      <div className="bg-white border border-[#DCE0EB] rounded-3xl overflow-hidden shadow-card">
         {loading ? (
           <LoadingSpinner text="Fetching delivery challans..." />
         ) : challans.length === 0 ? (
@@ -159,7 +157,7 @@ export const ChallansPage = () => {
               canCreate ? (
                 <Link
                   to="/challans/new"
-                  className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-xl"
+                  className="mt-2 inline-flex items-center gap-2 btn-primary"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Create Challan</span>
@@ -170,46 +168,46 @@ export const ChallansPage = () => {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-850/80 border-b border-slate-800 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+              <thead className="bg-[#F9FAFD] border-b border-[#EEF0F6] text-[#77767D] text-xs font-bold uppercase tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-6">Challan Number</th>
-                  <th className="py-3.5 px-4">Customer Account</th>
-                  <th className="py-3.5 px-4">Total Qty</th>
-                  <th className="py-3.5 px-4">Total Value</th>
-                  <th className="py-3.5 px-4">Status</th>
-                  <th className="py-3.5 px-4">Date Created</th>
-                  <th className="py-3.5 px-6 text-right">Actions</th>
+                  <th className="py-4 px-6">Challan Number</th>
+                  <th className="py-4 px-4">Customer Account</th>
+                  <th className="py-4 px-4">Total Qty</th>
+                  <th className="py-4 px-4">Total Value</th>
+                  <th className="py-4 px-4">Status</th>
+                  <th className="py-4 px-4">Date Created</th>
+                  <th className="py-4 px-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-[#EEF0F6] text-[#2D3139]">
                 {challans.map((ch) => (
-                  <tr key={ch.id} className="hover:bg-slate-850/40 transition-colors">
+                  <tr key={ch.id} className="hover:bg-[#F9FAFD] transition-colors">
                     <td className="py-4 px-6">
                       <Link
                         to={`/challans/${ch.id}`}
-                        className="font-mono font-bold text-emerald-400 hover:underline text-base"
+                        className="font-mono font-extrabold text-[#5E72C6] hover:underline text-base"
                       >
                         {ch.challan_number}
                       </Link>
                     </td>
 
                     <td className="py-4 px-4">
-                      <div className="font-bold text-white text-sm">
+                      <div className="font-extrabold text-[#1E222B] text-sm">
                         {ch.customer_name}
                       </div>
                       {ch.business_name && (
-                        <div className="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
-                          <Building2 className="w-3.5 h-3.5" />
+                        <div className="text-xs text-[#77767D] flex items-center gap-1 mt-0.5 font-medium">
+                          <Building2 className="w-3.5 h-3.5 text-[#5E72C6]" />
                           <span>{ch.business_name}</span>
                         </div>
                       )}
                     </td>
 
-                    <td className="py-4 px-4 font-bold text-white">
-                      {ch.total_quantity} <span className="text-xs text-slate-400 font-normal">items</span>
+                    <td className="py-4 px-4 font-bold text-[#1E222B]">
+                      {ch.total_quantity} <span className="text-xs text-[#77767D] font-normal">items</span>
                     </td>
 
-                    <td className="py-4 px-4 font-extrabold text-white text-base">
+                    <td className="py-4 px-4 font-black text-[#1E222B] text-base">
                       {formatCurrency(ch.total_amount)}
                     </td>
 
@@ -217,16 +215,16 @@ export const ChallansPage = () => {
                       <Badge variant={ch.status} size="sm" />
                     </td>
 
-                    <td className="py-4 px-4 text-xs font-mono text-slate-400">
+                    <td className="py-4 px-4 text-xs font-mono text-[#77767D]">
                       {formatDateTime(ch.created_at)}
                     </td>
 
                     <td className="py-4 px-6 text-right">
                       <Link
                         to={`/challans/${ch.id}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#EEF0F6] hover:bg-[#E4E7F2] text-[#2D3139] hover:text-[#5E72C6] text-xs font-bold border border-[#DCE0EB] transition-colors"
                       >
-                        <Eye className="w-3.5 h-3.5 text-emerald-400" />
+                        <Eye className="w-3.5 h-3.5 text-[#5E72C6]" />
                         <span>View Voucher</span>
                       </Link>
                     </td>
@@ -237,7 +235,7 @@ export const ChallansPage = () => {
           </div>
         )}
 
-        <div className="p-4 border-t border-slate-800">
+        <div className="p-4 border-t border-[#EEF0F6]">
           <Pagination pagination={pagination} onPageChange={(p) => setPage(p)} />
         </div>
       </div>

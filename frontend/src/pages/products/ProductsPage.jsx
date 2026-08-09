@@ -19,8 +19,7 @@ import {
   Eye,
   AlertTriangle,
   Filter,
-  MapPin,
-  Tag
+  MapPin
 } from 'lucide-react';
 
 export const ProductsPage = () => {
@@ -47,7 +46,7 @@ export const ProductsPage = () => {
   const [isStockModalOpen, setIsStockModalOpen] = useState(false);
   const [stockAdjustment, setStockAdjustment] = useState({
     product: null,
-    type: 'IN', // IN or OUT
+    type: 'IN',
     quantity: 1,
     reason: ''
   });
@@ -173,14 +172,14 @@ export const ProductsPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#5E72C6] uppercase tracking-wider mb-1">
             Warehouse & Logistics
           </div>
-          <h2 className="text-2xl font-black text-white flex items-center gap-2">
-            <Package className="w-7 h-7 text-emerald-400" />
+          <h2 className="text-2xl font-extrabold text-[#1E222B] flex items-center gap-2">
+            <Package className="w-7 h-7 text-[#5E72C6]" />
             Product & Inventory Catalog
           </h2>
-          <p className="text-sm text-slate-400 mt-0.5">
+          <p className="text-sm text-[#77767D] font-medium mt-0.5">
             Monitor real-time warehouse inventory, SKU pricing, and stock replenishment
           </p>
         </div>
@@ -188,7 +187,7 @@ export const ProductsPage = () => {
         {canManageProducts && (
           <button
             onClick={handleOpenAddProduct}
-            className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-950/40 flex items-center gap-2 transition-all"
+            className="btn-primary"
           >
             <Plus className="w-4 h-4" />
             <span>Add New Product</span>
@@ -197,7 +196,7 @@ export const ProductsPage = () => {
       </div>
 
       {/* Filter Bar */}
-      <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="p-4 rounded-3xl bg-white border border-[#DCE0EB] shadow-card flex flex-col md:flex-row gap-4 items-center justify-between">
         <SearchInput
           value={search}
           onChange={(val) => {
@@ -209,8 +208,8 @@ export const ProductsPage = () => {
 
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-slate-400" />
-            <span className="text-xs font-semibold text-slate-400 uppercase">Filters:</span>
+            <Filter className="w-4 h-4 text-[#77767D]" />
+            <span className="text-xs font-bold text-[#77767D] uppercase">Filters:</span>
           </div>
 
           <select
@@ -219,7 +218,7 @@ export const ProductsPage = () => {
               setCategory(e.target.value);
               setPage(1);
             }}
-            className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="px-3 py-2 bg-[#EEF0F6] border border-[#DCE0EB] rounded-xl text-xs font-bold text-[#1E222B] focus:outline-none focus:ring-2 focus:ring-[#5E72C6]/20"
           >
             <option value="">All Categories</option>
             <option value="Hardware & Tools">Hardware & Tools</option>
@@ -237,8 +236,8 @@ export const ProductsPage = () => {
             }}
             className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition-all ${
               lowStockFilter
-                ? 'bg-rose-600/20 text-rose-400 border-rose-500/50 shadow-md shadow-rose-950/30'
-                : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'
+                ? 'bg-[#FDF2F4] text-[#D30F38] border-[#F9CCD4]'
+                : 'bg-white text-[#49484D] border-[#DCE0EB] hover:bg-[#EEF0F6]'
             }`}
           >
             <AlertTriangle className="w-3.5 h-3.5" />
@@ -248,7 +247,7 @@ export const ProductsPage = () => {
       </div>
 
       {/* Products Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+      <div className="bg-white border border-[#DCE0EB] rounded-3xl overflow-hidden shadow-card">
         {loading ? (
           <LoadingSpinner text="Fetching product inventory..." />
         ) : products.length === 0 ? (
@@ -259,7 +258,7 @@ export const ProductsPage = () => {
               canManageProducts ? (
                 <button
                   onClick={handleOpenAddProduct}
-                  className="mt-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-xl"
+                  className="mt-2 btn-primary"
                 >
                   Create First Product
                 </button>
@@ -269,61 +268,61 @@ export const ProductsPage = () => {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-850/80 border-b border-slate-800 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+              <thead className="bg-[#F9FAFD] border-b border-[#EEF0F6] text-[#77767D] text-xs font-bold uppercase tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-6">Product Details</th>
-                  <th className="py-3.5 px-4">Category</th>
-                  <th className="py-3.5 px-4">Unit Price</th>
-                  <th className="py-3.5 px-4">Stock Status</th>
-                  <th className="py-3.5 px-4">Location</th>
-                  <th className="py-3.5 px-6 text-right">Actions</th>
+                  <th className="py-4 px-6">Product Details</th>
+                  <th className="py-4 px-4">Category</th>
+                  <th className="py-4 px-4">Unit Price</th>
+                  <th className="py-4 px-4">Stock Status</th>
+                  <th className="py-4 px-4">Location</th>
+                  <th className="py-4 px-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-[#EEF0F6] text-[#2D3139]">
                 {products.map((p) => {
                   const isLow = p.current_stock <= p.minimum_stock;
                   return (
-                    <tr key={p.id} className="hover:bg-slate-850/40 transition-colors">
+                    <tr key={p.id} className="hover:bg-[#F9FAFD] transition-colors">
                       <td className="py-4 px-6">
-                        <div className="font-bold text-white text-base">
-                          <Link to={`/products/${p.id}`} className="hover:text-emerald-400 transition-colors">
+                        <div className="font-extrabold text-[#1E222B] text-base">
+                          <Link to={`/products/${p.id}`} className="hover:text-[#5E72C6] transition-colors">
                             {p.product_name}
                           </Link>
                         </div>
-                        <div className="text-xs font-mono text-emerald-400 mt-0.5">
+                        <div className="text-xs font-mono font-bold text-[#5E72C6] mt-0.5">
                           SKU: {p.sku}
                         </div>
                       </td>
 
-                      <td className="py-4 px-4 text-xs">
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-300">
+                      <td className="py-4 px-4 text-xs font-semibold">
+                        <span className="px-2.5 py-1 rounded-lg bg-[#EEF0F6] border border-[#DCE0EB] text-[#2D3139]">
                           {p.category}
                         </span>
                       </td>
 
-                      <td className="py-4 px-4 font-bold text-white text-base">
+                      <td className="py-4 px-4 font-black text-[#1E222B] text-base">
                         {formatCurrency(p.unit_price)}
                       </td>
 
                       <td className="py-4 px-4">
                         <div className="flex items-center gap-2">
-                          <span className={`text-base font-extrabold ${isLow ? 'text-rose-400' : 'text-emerald-400'}`}>
+                          <span className={`text-base font-extrabold ${isLow ? 'text-[#D30F38]' : 'text-[#1E8A38]'}`}>
                             {p.current_stock}
                           </span>
-                          <span className="text-xs text-slate-400">units</span>
+                          <span className="text-xs text-[#77767D] font-medium">units</span>
                           <Badge variant={isLow ? 'low' : 'normal'} size="sm">
                             {isLow ? 'Low Alert' : 'In Stock'}
                           </Badge>
                         </div>
-                        <div className="text-[11px] text-slate-400 mt-0.5">
+                        <div className="text-[11px] text-[#77767D] mt-0.5 font-medium">
                           Min Alert: {p.minimum_stock}
                         </div>
                       </td>
 
-                      <td className="py-4 px-4 text-xs text-slate-400">
+                      <td className="py-4 px-4 text-xs text-[#77767D]">
                         {p.warehouse_location ? (
-                          <div className="flex items-center gap-1 text-slate-300">
-                            <MapPin className="w-3.5 h-3.5 text-amber-400" />
+                          <div className="flex items-center gap-1 text-[#2D3139] font-medium">
+                            <MapPin className="w-3.5 h-3.5 text-[#5E72C6]" />
                             <span>{p.warehouse_location}</span>
                           </div>
                         ) : (
@@ -338,7 +337,7 @@ export const ProductsPage = () => {
                               <button
                                 onClick={() => handleOpenStockModal(p, 'IN')}
                                 title="Stock IN"
-                                className="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold flex items-center gap-1 transition-colors"
+                                className="px-2.5 py-1.5 rounded-xl bg-[#EBF7EE] hover:bg-[#D5EEDC] text-[#1E8A38] border border-[#CBEAD2] text-xs font-bold flex items-center gap-1 transition-colors"
                               >
                                 <ArrowDownCircle className="w-3.5 h-3.5" />
                                 <span>IN</span>
@@ -347,7 +346,7 @@ export const ProductsPage = () => {
                               <button
                                 onClick={() => handleOpenStockModal(p, 'OUT')}
                                 title="Stock OUT"
-                                className="px-2.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold flex items-center gap-1 transition-colors"
+                                className="px-2.5 py-1.5 rounded-xl bg-[#FEF6E9] hover:bg-[#FDE5BE] text-[#C47D0B] border border-[#FDE5BE] text-xs font-bold flex items-center gap-1 transition-colors"
                               >
                                 <ArrowUpCircle className="w-3.5 h-3.5" />
                                 <span>OUT</span>
@@ -356,7 +355,7 @@ export const ProductsPage = () => {
                               <button
                                 onClick={() => handleOpenEditProduct(p)}
                                 title="Edit Product"
-                                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-emerald-400 transition-colors"
+                                className="p-2 rounded-xl bg-[#EEF0F6] hover:bg-[#E4E7F2] text-[#2D3139] hover:text-[#5E72C6] transition-colors"
                               >
                                 <Edit2 className="w-4 h-4" />
                               </button>
@@ -366,7 +365,7 @@ export const ProductsPage = () => {
                           <Link
                             to={`/products/${p.id}`}
                             title="Product Details & Audit Trail"
-                            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                            className="p-2 rounded-xl bg-[#EEF0F6] hover:bg-[#E4E7F2] text-[#2D3139] hover:text-[#5E72C6] transition-colors"
                           >
                             <Eye className="w-4 h-4" />
                           </Link>
@@ -380,7 +379,7 @@ export const ProductsPage = () => {
           </div>
         )}
 
-        <div className="p-4 border-t border-slate-800">
+        <div className="p-4 border-t border-[#EEF0F6]">
           <Pagination pagination={pagination} onPageChange={(p) => setPage(p)} />
         </div>
       </div>
@@ -389,13 +388,13 @@ export const ProductsPage = () => {
       <Modal
         isOpen={isProductModalOpen}
         onClose={() => setIsProductModalOpen(false)}
-        title={editingProduct ? 'Edit Catalog Item' : 'Add New Inventory Product'}
+        title={editingProduct ? 'Edit Catalog Product' : 'Add New Inventory Product'}
         maxWidth="max-w-2xl"
       >
         <form onSubmit={handleSubmitProductForm} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Product Name *
               </label>
               <input
@@ -404,12 +403,12 @@ export const ProductsPage = () => {
                 value={productForm.product_name}
                 onChange={(e) => setProductForm({ ...productForm, product_name: e.target.value })}
                 placeholder="e.g. Heavy Duty Drill 750W"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 SKU (Stock Keeping Unit) *
               </label>
               <input
@@ -418,20 +417,20 @@ export const ProductsPage = () => {
                 value={productForm.sku}
                 onChange={(e) => setProductForm({ ...productForm, sku: e.target.value.toUpperCase() })}
                 placeholder="TOOL-DRL-750"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white font-mono uppercase focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-mono uppercase font-bold"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Category *
               </label>
               <select
                 value={productForm.category}
                 onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-bold"
               >
                 <option value="Hardware & Tools">Hardware & Tools</option>
                 <option value="Electrical">Electrical</option>
@@ -443,7 +442,7 @@ export const ProductsPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Unit Price (₹) *
               </label>
               <input
@@ -454,7 +453,7 @@ export const ProductsPage = () => {
                 value={productForm.unit_price}
                 onChange={(e) => setProductForm({ ...productForm, unit_price: e.target.value })}
                 placeholder="2450.00"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-extrabold"
               />
             </div>
           </div>
@@ -462,7 +461,7 @@ export const ProductsPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {!editingProduct && (
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+                <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                   Initial Stock Quantity
                 </label>
                 <input
@@ -471,13 +470,13 @@ export const ProductsPage = () => {
                   value={productForm.current_stock}
                   onChange={(e) => setProductForm({ ...productForm, current_stock: e.target.value })}
                   placeholder="0"
-                  className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  className="ds-input font-bold"
                 />
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Minimum Stock Alert Quantity *
               </label>
               <input
@@ -487,14 +486,14 @@ export const ProductsPage = () => {
                 value={productForm.minimum_stock}
                 onChange={(e) => setProductForm({ ...productForm, minimum_stock: e.target.value })}
                 placeholder="10"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-bold"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Warehouse Location
               </label>
               <input
@@ -502,12 +501,12 @@ export const ProductsPage = () => {
                 value={productForm.warehouse_location}
                 onChange={(e) => setProductForm({ ...productForm, warehouse_location: e.target.value })}
                 placeholder="e.g. Aisle 2 - Shelf 4"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Product Image URL (Optional)
               </label>
               <input
@@ -515,22 +514,22 @@ export const ProductsPage = () => {
                 value={productForm.image_url}
                 onChange={(e) => setProductForm({ ...productForm, image_url: e.target.value })}
                 placeholder="https://..."
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EEF0F6]">
             <button
               type="button"
               onClick={() => setIsProductModalOpen(false)}
-              className="px-4 py-2.5 text-sm font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+              className="btn-outlined"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2.5 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-950/40 transition-colors"
+              className="btn-primary"
             >
               {editingProduct ? 'Update Product' : 'Add Product to Inventory'}
             </button>
@@ -546,15 +545,15 @@ export const ProductsPage = () => {
         maxWidth="max-w-md"
       >
         <form onSubmit={handleSubmitStockAdjustment} className="space-y-4">
-          <div className="p-3.5 rounded-xl bg-slate-850 border border-slate-800 flex items-center justify-between text-xs">
-            <span className="text-slate-400">Current Available Stock:</span>
-            <span className="font-extrabold text-white text-sm">
+          <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB] flex items-center justify-between text-xs font-bold">
+            <span className="text-[#77767D]">Current Available Stock:</span>
+            <span className="font-extrabold text-[#1E222B] text-sm">
               {stockAdjustment.product?.current_stock} units
             </span>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
               Quantity to {stockAdjustment.type === 'IN' ? 'Add' : 'Deduct'} *
             </label>
             <input
@@ -564,12 +563,12 @@ export const ProductsPage = () => {
               required
               value={stockAdjustment.quantity}
               onChange={(e) => setStockAdjustment({ ...stockAdjustment, quantity: parseInt(e.target.value, 10) || 1 })}
-              className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              className="ds-input font-bold"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
               Reason / Reference *
             </label>
             <input
@@ -578,25 +577,21 @@ export const ProductsPage = () => {
               value={stockAdjustment.reason}
               onChange={(e) => setStockAdjustment({ ...stockAdjustment, reason: e.target.value })}
               placeholder={stockAdjustment.type === 'IN' ? 'e.g. Factory Batch PO-9912' : 'e.g. Damaged Goods Return'}
-              className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              className="ds-input font-medium"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EEF0F6]">
             <button
               type="button"
               onClick={() => setIsStockModalOpen(false)}
-              className="px-4 py-2 text-sm font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+              className="btn-outlined"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className={`px-5 py-2 text-sm font-bold text-white rounded-xl shadow-lg transition-colors ${
-                stockAdjustment.type === 'IN'
-                  ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-950/40'
-                  : 'bg-amber-600 hover:bg-amber-500 shadow-amber-950/40'
-              }`}
+              className={stockAdjustment.type === 'IN' ? 'btn-primary' : 'btn-secondary'}
             >
               Confirm Stock {stockAdjustment.type}
             </button>

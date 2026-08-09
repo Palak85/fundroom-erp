@@ -11,8 +11,7 @@ import {
   AlertTriangle,
   CheckCircle2,
   Clock,
-  Building2,
-  Package
+  Building2
 } from 'lucide-react';
 
 export const CreateChallanPage = () => {
@@ -153,16 +152,16 @@ export const CreateChallanPage = () => {
       <div className="flex items-center gap-3">
         <Link
           to="/challans"
-          className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+          className="p-2.5 rounded-2xl bg-white border border-[#DCE0EB] text-[#2D3139] hover:bg-[#EEF0F6] transition-colors shadow-sm"
         >
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
+          <div className="text-xs font-bold text-[#5E72C6] uppercase tracking-wider">
             Sales & Delivery
           </div>
-          <h2 className="text-2xl font-black text-white flex items-center gap-2">
-            <FileSpreadsheet className="w-7 h-7 text-emerald-400" />
+          <h2 className="text-2xl font-extrabold text-[#1E222B] flex items-center gap-2">
+            <FileSpreadsheet className="w-7 h-7 text-[#5E72C6]" />
             Generate Delivery Challan
           </h2>
         </div>
@@ -172,19 +171,19 @@ export const CreateChallanPage = () => {
         {/* Main Item Table Section */}
         <div className="lg:col-span-2 space-y-6">
           {/* Customer Selection Card */}
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-4">
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">
-              1. Customer Information
+          <div className="p-6 rounded-3xl bg-white border border-[#DCE0EB] shadow-card space-y-4">
+            <h3 className="text-xs font-bold text-[#77767D] uppercase tracking-wider">
+              1. Customer Account
             </h3>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-2">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Select Client Account *
               </label>
               <select
                 value={selectedCustomerId}
                 onChange={(e) => setSelectedCustomerId(e.target.value)}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-bold"
               >
                 <option value="">-- Choose Customer --</option>
                 {customers.map((c) => (
@@ -196,20 +195,20 @@ export const CreateChallanPage = () => {
             </div>
 
             {selectedCustomerObj && (
-              <div className="p-4 rounded-2xl bg-slate-850/80 border border-slate-800 text-xs space-y-1.5 text-slate-300">
-                <div className="font-bold text-white text-sm">{selectedCustomerObj.customer_name}</div>
+              <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB] text-xs space-y-1.5 text-[#2D3139]">
+                <div className="font-extrabold text-[#1E222B] text-sm">{selectedCustomerObj.customer_name}</div>
                 {selectedCustomerObj.business_name && (
-                  <div className="flex items-center gap-1.5 text-slate-400">
-                    <Building2 className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-1.5 text-[#77767D] font-medium">
+                    <Building2 className="w-3.5 h-3.5 text-[#5E72C6]" />
                     <span>{selectedCustomerObj.business_name}</span>
                   </div>
                 )}
                 {selectedCustomerObj.gst_number && (
-                  <div className="font-mono text-[11px] text-emerald-400">
+                  <div className="font-mono text-[11px] text-[#5E72C6] font-bold">
                     GSTIN: {selectedCustomerObj.gst_number}
                   </div>
                 )}
-                <div className="text-slate-400 mt-1">
+                <div className="text-[#77767D] mt-1">
                   Deliver to: {selectedCustomerObj.address || 'Address on file'}
                 </div>
               </div>
@@ -217,17 +216,17 @@ export const CreateChallanPage = () => {
           </div>
 
           {/* Product Items Table Card */}
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-4">
+          <div className="p-6 rounded-3xl bg-white border border-[#DCE0EB] shadow-card space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">
-                2. Challan Product Items
+              <h3 className="text-xs font-bold text-[#77767D] uppercase tracking-wider">
+                2. Challan Line Items
               </h3>
               <button
                 type="button"
                 onClick={handleAddItem}
-                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 hover:text-emerald-300 text-xs font-bold rounded-xl border border-slate-700 flex items-center gap-1.5 transition-colors"
+                className="btn-secondary text-xs py-2"
               >
-                <Plus className="w-4 h-4" />
+                <Plus className="w-4 h-4 text-[#5E72C6]" />
                 <span>Add Row</span>
               </button>
             </div>
@@ -242,20 +241,20 @@ export const CreateChallanPage = () => {
                     key={idx}
                     className={`p-4 rounded-2xl border transition-all ${
                       isInsufficient
-                        ? 'bg-rose-950/20 border-rose-500/40'
-                        : 'bg-slate-850/60 border-slate-800'
+                        ? 'bg-[#FDF2F4] border-[#F9CCD4]'
+                        : 'bg-[#F9FAFD] border-[#EEF0F6]'
                     }`}
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
                       {/* Product Selector */}
                       <div className="sm:col-span-6">
-                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                        <label className="block text-[10px] font-bold text-[#77767D] uppercase mb-1">
                           Product Item #{idx + 1}
                         </label>
                         <select
                           value={item.product_id}
                           onChange={(e) => handleProductChange(idx, e.target.value)}
-                          className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                          className="ds-input text-xs font-bold"
                         >
                           <option value="">-- Choose Product --</option>
                           {products.map((p) => (
@@ -268,17 +267,17 @@ export const CreateChallanPage = () => {
 
                       {/* Unit Price */}
                       <div className="sm:col-span-2">
-                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                        <label className="block text-[10px] font-bold text-[#77767D] uppercase mb-1">
                           Unit Price
                         </label>
-                        <div className="px-3 py-2 bg-slate-800/80 border border-slate-700/50 rounded-xl text-xs font-semibold text-white">
+                        <div className="px-3 py-2.5 bg-white border border-[#DCE0EB] rounded-xl text-xs font-black text-[#1E222B]">
                           {formatCurrency(item.unit_price)}
                         </div>
                       </div>
 
                       {/* Quantity */}
                       <div className="sm:col-span-2">
-                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                        <label className="block text-[10px] font-bold text-[#77767D] uppercase mb-1">
                           Quantity
                         </label>
                         <input
@@ -286,14 +285,14 @@ export const CreateChallanPage = () => {
                           min="1"
                           value={item.quantity}
                           onChange={(e) => handleQuantityChange(idx, e.target.value)}
-                          className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs font-bold text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                          className="ds-input text-xs font-black"
                         />
                       </div>
 
                       {/* Row Total & Delete */}
                       <div className="sm:col-span-2 flex items-center justify-between sm:justify-end gap-2 pt-2 sm:pt-4">
                         <div className="text-right">
-                          <div className="text-xs font-extrabold text-white">
+                          <div className="text-xs font-black text-[#1E222B]">
                             {formatCurrency(rowTotal)}
                           </div>
                         </div>
@@ -301,7 +300,7 @@ export const CreateChallanPage = () => {
                         <button
                           type="button"
                           onClick={() => handleRemoveItem(idx)}
-                          className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                          className="p-1.5 text-[#77767D] hover:text-[#D30F38] hover:bg-[#FDF2F4] rounded-lg transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -310,14 +309,14 @@ export const CreateChallanPage = () => {
 
                     {/* Stock Alert Info */}
                     {item.product_id && (
-                      <div className="mt-2 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px]">
-                        <span className="text-slate-400">
-                          SKU: <strong className="text-slate-300 font-mono">{item.sku}</strong> • Available Warehouse Stock:{' '}
-                          <strong className="text-slate-200">{item.current_stock} units</strong>
+                      <div className="mt-2.5 pt-2 border-t border-[#DCE0EB]/60 flex items-center justify-between text-[11px]">
+                        <span className="text-[#77767D] font-medium">
+                          SKU: <strong className="text-[#1E222B] font-mono">{item.sku}</strong> • Available Warehouse Stock:{' '}
+                          <strong className="text-[#1E222B]">{item.current_stock} units</strong>
                         </span>
 
                         {isInsufficient && (
-                          <span className="text-rose-400 font-bold flex items-center gap-1">
+                          <span className="text-[#D30F38] font-bold flex items-center gap-1">
                             <AlertTriangle className="w-3.5 h-3.5" />
                             Exceeds stock by {item.quantity - item.current_stock} units!
                           </span>
@@ -333,35 +332,35 @@ export const CreateChallanPage = () => {
 
         {/* Order Summary & Actions Sidebar */}
         <div className="space-y-6">
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-6 sticky top-24">
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">
-              Challan Voucher Summary
+          <div className="p-6 rounded-3xl bg-white border border-[#DCE0EB] shadow-card space-y-6 sticky top-24">
+            <h3 className="text-xs font-bold text-[#77767D] uppercase tracking-wider">
+              Voucher Summary
             </h3>
 
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center justify-between text-slate-300">
+            <div className="space-y-3 text-sm font-medium">
+              <div className="flex items-center justify-between text-[#49484D]">
                 <span>Total Line Items:</span>
-                <span className="font-bold text-white">{items.filter((i) => i.product_id).length} items</span>
+                <span className="font-bold text-[#1E222B]">{items.filter((i) => i.product_id).length} items</span>
               </div>
 
-              <div className="flex items-center justify-between text-slate-300">
+              <div className="flex items-center justify-between text-[#49484D]">
                 <span>Total Units / Quantity:</span>
-                <span className="font-bold text-white">{totalQuantity} units</span>
+                <span className="font-bold text-[#1E222B]">{totalQuantity} units</span>
               </div>
 
-              <div className="pt-3 border-t border-slate-800 flex items-baseline justify-between">
-                <span className="text-base font-bold text-slate-200">Total Valuation:</span>
-                <span className="text-2xl font-black text-emerald-400">
+              <div className="pt-3 border-t border-[#EEF0F6] flex items-baseline justify-between">
+                <span className="text-base font-extrabold text-[#1E222B]">Total Value:</span>
+                <span className="text-2xl font-black text-[#5E72C6]">
                   {formatCurrency(totalAmount)}
                 </span>
               </div>
             </div>
 
             {hasInsufficientStock && (
-              <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2">
-                <AlertTriangle className="w-4 h-4 text-rose-400 flex-shrink-0 mt-0.5" />
+              <div className="p-4 rounded-2xl bg-[#FDF2F4] border border-[#F9CCD4] text-[#D30F38] text-xs flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 text-[#D30F38] flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="font-bold">Insufficient Inventory:</strong> One or more items exceed current stock. You can save as a <strong>DRAFT</strong>, but confirmation will be rejected until restocked.
+                  <strong className="font-bold">Insufficient Inventory:</strong> Items exceed current stock. You can save as a <strong>DRAFT</strong>, but confirmation requires replenishment.
                 </div>
               </div>
             )}
@@ -372,10 +371,10 @@ export const CreateChallanPage = () => {
                 type="button"
                 disabled={submitting}
                 onClick={() => handleSubmit('CONFIRMED')}
-                className={`w-full py-3.5 px-4 font-bold text-sm rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50 ${
+                className={`w-full py-3.5 px-4 font-bold text-sm rounded-xl shadow-btn flex items-center justify-center gap-2 transition-all disabled:opacity-50 ${
                   hasInsufficientStock
-                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
-                    : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-950/40'
+                    ? 'bg-[#EEF0F6] text-[#77767D] cursor-not-allowed border border-[#DCE0EB]'
+                    : 'bg-[#5E72C6] hover:bg-[#485CB4] text-white'
                 }`}
               >
                 <CheckCircle2 className="w-4 h-4" />
@@ -386,15 +385,15 @@ export const CreateChallanPage = () => {
                 type="button"
                 disabled={submitting}
                 onClick={() => handleSubmit('DRAFT')}
-                className="w-full py-3.5 px-4 font-bold text-sm bg-slate-800 hover:bg-slate-700 text-amber-400 rounded-xl border border-slate-700 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                className="w-full btn-secondary py-3.5 text-[#C47D0B] border border-[#FDE5BE] flex items-center justify-center gap-2"
               >
                 <Clock className="w-4 h-4" />
                 <span>Save as Draft (No Stock Change)</span>
               </button>
             </div>
 
-            <div className="text-[11px] text-slate-400 text-center leading-relaxed">
-              Automatic Challan Number <code className="text-emerald-400 font-mono">CH-2026-XXXX</code> will be issued on creation.
+            <div className="text-[11px] text-[#77767D] text-center font-medium">
+              Challan Number <code className="text-[#5E72C6] font-mono font-bold">CH-2026-XXXX</code> assigned automatically.
             </div>
           </div>
         </div>

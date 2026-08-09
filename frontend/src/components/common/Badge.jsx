@@ -2,49 +2,54 @@ import React from 'react';
 
 export const Badge = ({ children, variant = 'default', size = 'md' }) => {
   const sizeClasses = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-2.5 py-1 text-xs font-semibold',
-    lg: 'px-3 py-1.5 text-sm font-semibold'
+    sm: 'px-2 py-0.5 text-xs font-semibold',
+    md: 'px-2.5 py-1 text-xs font-bold',
+    lg: 'px-3 py-1.5 text-sm font-bold'
   };
 
   const variantClasses = {
     // Status
-    Active: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30',
-    Lead: 'bg-blue-500/15 text-blue-400 border border-blue-500/30',
-    Inactive: 'bg-slate-700/40 text-slate-400 border border-slate-600/40',
+    Active: 'bg-[#EBF7EE] text-[#1E8A38] border border-[#CBEAD2]',
+    Lead: 'bg-[#EEF2FC] text-[#5E72C6] border border-[#D5DEF7]',
+    Inactive: 'bg-[#F2F3F5] text-[#77767D] border border-[#DCE0EB]',
 
     // Challans
-    DRAFT: 'bg-amber-500/15 text-amber-400 border border-amber-500/30',
-    CONFIRMED: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30',
-    CANCELLED: 'bg-rose-500/15 text-rose-400 border border-rose-500/30',
+    DRAFT: 'bg-[#FEF6E9] text-[#C47D0B] border border-[#FDE5BE]',
+    CONFIRMED: 'bg-[#EEF2FC] text-[#5E72C6] border border-[#D5DEF7]',
+    CANCELLED: 'bg-[#FDF2F4] text-[#D30F38] border border-[#F9CCD4]',
 
     // Stock Movements
-    IN: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30',
-    OUT: 'bg-amber-500/15 text-amber-400 border border-amber-500/30',
+    IN: 'bg-[#EBF7EE] text-[#1E8A38] border border-[#CBEAD2]',
+    OUT: 'bg-[#FEF6E9] text-[#C47D0B] border border-[#FDE5BE]',
 
     // Customer Types
-    Wholesale: 'bg-purple-500/15 text-purple-400 border border-purple-500/30',
-    Distributor: 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30',
-    Retail: 'bg-sky-500/15 text-sky-400 border border-sky-500/30',
+    Wholesale: 'bg-[#F3EBFB] text-[#7B39B8] border border-[#E3CEF5]',
+    Distributor: 'bg-[#EEF2FC] text-[#5E72C6] border border-[#D5DEF7]',
+    Retail: 'bg-[#E6F8FB] text-[#0891B2] border border-[#C2EFF6]',
 
     // Roles
-    Admin: 'bg-rose-500/15 text-rose-400 border border-rose-500/30',
-    Sales: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30',
-    Warehouse: 'bg-amber-500/15 text-amber-400 border border-amber-500/30',
-    Accounts: 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30',
+    Admin: 'bg-[#FDF2F4] text-[#D30F38] border border-[#F9CCD4]',
+    Sales: 'bg-[#EEF2FC] text-[#5E72C6] border border-[#D5DEF7]',
+    Warehouse: 'bg-[#FEF6E9] text-[#C47D0B] border border-[#FDE5BE]',
+    Accounts: 'bg-[#F2F3F5] text-[#2D3139] border border-[#DCE0EB]',
 
     // Stock status
-    low: 'bg-rose-500/15 text-rose-400 border border-rose-500/30 animate-pulse',
-    normal: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30',
+    low: 'bg-[#FDF2F4] text-[#D30F38] border border-[#F9CCD4] animate-pulse',
+    normal: 'bg-[#EBF7EE] text-[#1E8A38] border border-[#CBEAD2]',
 
-    default: 'bg-slate-800 text-slate-300 border border-slate-700'
+    primary: 'bg-[#5E72C6] text-white',
+    tertiary: 'bg-[#D30F38] text-white',
+    neutral: 'bg-[#77767D] text-white',
+    inverted: 'bg-[#2D3139] text-white',
+
+    default: 'bg-[#EEF0F6] text-[#2D3139] border border-[#DCE0EB]'
   };
 
   const selectedClass = variantClasses[variant] || variantClasses.default;
 
   return (
     <span className={`inline-flex items-center gap-1.5 rounded-full ${sizeClasses[size]} ${selectedClass}`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-current opacity-70"></span>
+      <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80"></span>
       {children || variant}
     </span>
   );

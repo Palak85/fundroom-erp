@@ -35,14 +35,14 @@ export const FollowupsPage = () => {
   return (
     <div className="space-y-6 pb-12">
       <div>
-        <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">
+        <div className="flex items-center gap-2 text-xs font-bold text-[#5E72C6] uppercase tracking-wider mb-1">
           CRM Operations
         </div>
-        <h2 className="text-2xl font-black text-white flex items-center gap-2">
-          <CalendarCheck className="w-7 h-7 text-emerald-400" />
+        <h2 className="text-2xl font-extrabold text-[#1E222B] flex items-center gap-2">
+          <CalendarCheck className="w-7 h-7 text-[#5E72C6]" />
           Scheduled Client Follow-ups
         </h2>
-        <p className="text-sm text-slate-400 mt-0.5">
+        <p className="text-sm text-[#77767D] font-medium mt-0.5">
           Master pipeline of scheduled customer communications, quote check-ins, and renewals
         </p>
       </div>
@@ -63,23 +63,23 @@ export const FollowupsPage = () => {
             return (
               <div
                 key={c.id}
-                className={`p-5 rounded-2xl bg-slate-900 border transition-all flex flex-col justify-between ${
+                className={`p-6 rounded-3xl bg-white border transition-all flex flex-col justify-between shadow-card hover:shadow-card-hover ${
                   isToday
-                    ? 'border-emerald-500/50 shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-500/30'
+                    ? 'border-[#5E72C6] ring-2 ring-[#5E72C6]/20'
                     : isOverdue
-                    ? 'border-rose-500/40 shadow-lg shadow-rose-950/20'
-                    : 'border-slate-800'
+                    ? 'border-[#F9CCD4]'
+                    : 'border-[#DCE0EB]'
                 }`}
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
+                  <div className="flex items-center justify-between gap-2 mb-3">
                     <span
-                      className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
+                      className={`text-xs font-bold px-3 py-1 rounded-full ${
                         isToday
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                          ? 'bg-[#EEF2FC] text-[#5E72C6] border border-[#D5DEF7]'
                           : isOverdue
-                          ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
-                          : 'bg-slate-800 text-slate-300'
+                          ? 'bg-[#FDF2F4] text-[#D30F38] border border-[#F9CCD4]'
+                          : 'bg-[#EEF0F6] text-[#2D3139]'
                       }`}
                     >
                       {isToday ? 'Due Today' : isOverdue ? 'Overdue' : formatDate(c.follow_up_date)}
@@ -87,31 +87,31 @@ export const FollowupsPage = () => {
                     <Badge variant={c.status} size="sm" />
                   </div>
 
-                  <h3 className="font-bold text-white text-base truncate">{c.customer_name}</h3>
+                  <h3 className="font-extrabold text-[#1E222B] text-base truncate">{c.customer_name}</h3>
                   {c.business_name && (
-                    <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5 truncate">
-                      <Building2 className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-1.5 text-xs text-[#77767D] font-medium mt-0.5 truncate">
+                      <Building2 className="w-3.5 h-3.5 text-[#5E72C6]" />
                       <span>{c.business_name}</span>
                     </div>
                   )}
 
-                  <div className="flex items-center gap-1.5 text-xs text-slate-300 mt-2 font-medium">
-                    <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                  <div className="flex items-center gap-1.5 text-xs text-[#1E222B] mt-2.5 font-bold">
+                    <Phone className="w-3.5 h-3.5 text-[#5E72C6]" />
                     <span>{c.mobile}</span>
                   </div>
 
                   {c.notes && (
-                    <p className="mt-3 text-xs text-slate-400 bg-slate-850 p-2.5 rounded-xl border border-slate-800 italic line-clamp-2">
+                    <p className="mt-3 text-xs text-[#49484D] bg-[#EEF0F6] p-3 rounded-2xl border border-[#DCE0EB] italic line-clamp-2 font-medium">
                       "{c.notes}"
                     </p>
                   )}
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
-                  <span className="text-[11px] text-slate-400">{c.customer_type}</span>
+                <div className="mt-5 pt-3.5 border-t border-[#EEF0F6] flex items-center justify-between">
+                  <span className="text-[11px] text-[#77767D] font-bold uppercase">{c.customer_type}</span>
                   <Link
                     to={`/customers/${c.id}`}
-                    className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+                    className="text-xs font-bold text-[#5E72C6] hover:underline flex items-center gap-1"
                   >
                     Open CRM Profile <ArrowRight className="w-3.5 h-3.5" />
                   </Link>

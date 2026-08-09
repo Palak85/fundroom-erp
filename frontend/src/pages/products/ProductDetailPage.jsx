@@ -13,8 +13,6 @@ import {
   ArrowDownCircle,
   ArrowUpCircle,
   MapPin,
-  Tag,
-  AlertTriangle,
   History
 } from 'lucide-react';
 
@@ -101,15 +99,15 @@ export const ProductDetailPage = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/products"
-            className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+            className="p-2.5 rounded-2xl bg-white border border-[#DCE0EB] text-[#2D3139] hover:bg-[#EEF0F6] transition-colors shadow-sm"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#5E72C6] uppercase tracking-wider">
               Product SKU Overview
             </div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-3">
+            <h2 className="text-2xl font-extrabold text-[#1E222B] flex items-center gap-3">
               {product.product_name}
               <Badge variant={isLow ? 'low' : 'normal'} size="sm">
                 {isLow ? 'Low Stock Warning' : 'In Stock'}
@@ -122,7 +120,7 @@ export const ProductDetailPage = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={() => handleOpenStockModal('IN')}
-              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-950/40 flex items-center gap-2 transition-all"
+              className="btn-primary"
             >
               <ArrowDownCircle className="w-4 h-4" />
               <span>Stock IN</span>
@@ -130,9 +128,9 @@ export const ProductDetailPage = () => {
 
             <button
               onClick={() => handleOpenStockModal('OUT')}
-              className="px-4 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-amber-950/40 flex items-center gap-2 transition-all"
+              className="btn-secondary"
             >
-              <ArrowUpCircle className="w-4 h-4" />
+              <ArrowUpCircle className="w-4 h-4 text-[#C47D0B]" />
               <span>Stock OUT</span>
             </button>
           </div>
@@ -142,11 +140,11 @@ export const ProductDetailPage = () => {
       {/* Information Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Product Details Card */}
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
-          <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Specifications</h3>
+        <div className="bg-white border border-[#DCE0EB] rounded-3xl p-6 shadow-card space-y-4">
+          <h3 className="text-xs font-bold text-[#77767D] uppercase tracking-wider">Specifications</h3>
 
           {product.image_url && (
-            <div className="rounded-2xl overflow-hidden border border-slate-800 h-44 bg-slate-950 flex items-center justify-center">
+            <div className="rounded-2xl overflow-hidden border border-[#DCE0EB] h-44 bg-[#EEF0F6] flex items-center justify-center">
               <img
                 src={product.image_url}
                 alt={product.product_name}
@@ -156,61 +154,61 @@ export const ProductDetailPage = () => {
             </div>
           )}
 
-          <div className="p-3.5 rounded-2xl bg-slate-850 border border-slate-800 space-y-2 text-xs">
+          <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB] space-y-2.5 text-xs font-medium">
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">SKU Code</span>
-              <span className="font-mono font-bold text-emerald-400">{product.sku}</span>
+              <span className="text-[#77767D]">SKU Code</span>
+              <span className="font-mono font-bold text-[#5E72C6]">{product.sku}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">Category</span>
-              <span className="text-slate-200 font-semibold">{product.category}</span>
+              <span className="text-[#77767D]">Category</span>
+              <span className="text-[#1E222B] font-bold">{product.category}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">Unit Price</span>
-              <span className="text-base font-extrabold text-white">{formatCurrency(product.unit_price)}</span>
+              <span className="text-[#77767D]">Unit Price</span>
+              <span className="text-base font-black text-[#1E222B]">{formatCurrency(product.unit_price)}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">Warehouse Bin / Bay</span>
-              <span className="text-slate-200 font-medium">{product.warehouse_location || 'Unassigned'}</span>
+              <span className="text-[#77767D]">Warehouse Bin / Bay</span>
+              <span className="text-[#1E222B] font-semibold">{product.warehouse_location || 'Unassigned'}</span>
             </div>
           </div>
 
           {/* Stock Health Box */}
-          <div className={`p-4 rounded-2xl border ${isLow ? 'bg-rose-500/10 border-rose-500/30' : 'bg-emerald-500/10 border-emerald-500/30'}`}>
+          <div className={`p-5 rounded-2xl border ${isLow ? 'bg-[#FDF2F4] border-[#F9CCD4]' : 'bg-[#EEF2FC] border-[#D5DEF7]'}`}>
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase text-slate-300">Live Available Stock</span>
-              <span className={`text-xl font-black ${isLow ? 'text-rose-400' : 'text-emerald-400'}`}>
+              <span className="text-xs font-bold uppercase text-[#49484D]">Live Available Stock</span>
+              <span className={`text-xl font-black ${isLow ? 'text-[#D30F38]' : 'text-[#5E72C6]'}`}>
                 {product.current_stock} Units
               </span>
             </div>
-            <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400">
-              <span>Minimum Threshold Alert: {product.minimum_stock} units</span>
+            <div className="mt-2 flex items-center justify-between text-[11px] text-[#77767D] font-medium">
+              <span>Min Alert: {product.minimum_stock} units</span>
               <span>{isLow ? 'Replenish urgently' : 'Healthy inventory'}</span>
             </div>
           </div>
         </div>
 
         {/* Stock Movement Audit Log for this product */}
-        <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col">
+        <div className="lg:col-span-2 bg-white border border-[#DCE0EB] rounded-3xl p-6 shadow-card flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <History className="w-5 h-5 text-emerald-400" />
+              <h3 className="text-base font-extrabold text-[#1E222B] flex items-center gap-2">
+                <History className="w-5 h-5 text-[#5E72C6]" />
                 Product Stock Movement History
               </h3>
-              <p className="text-xs text-slate-400">Complete audit log of intake, adjustments, and challan deductions</p>
+              <p className="text-xs text-[#77767D] font-medium">Audit log of intake, adjustments, and challan deductions</p>
             </div>
           </div>
 
           <div className="overflow-x-auto flex-1">
             {movements.length === 0 ? (
-              <div className="p-12 text-center text-slate-400 text-sm">
+              <div className="p-12 text-center text-[#77767D] text-sm font-medium">
                 No stock transactions recorded for this product yet.
               </div>
             ) : (
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 font-semibold uppercase">
+                  <tr className="border-b border-[#EEF0F6] text-[#77767D] font-bold uppercase">
                     <th className="pb-3">Type</th>
                     <th className="pb-3">Quantity</th>
                     <th className="pb-3">Reason / Challan Reference</th>
@@ -218,20 +216,22 @@ export const ProductDetailPage = () => {
                     <th className="pb-3">Timestamp</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-[#EEF0F6]">
                   {movements.map((m) => (
-                    <tr key={m.id} className="hover:bg-slate-850/40 transition-colors">
+                    <tr key={m.id} className="hover:bg-[#F9FAFD] transition-colors">
                       <td className="py-3">
                         <Badge variant={m.movement_type} size="sm">
                           {m.movement_type}
                         </Badge>
                       </td>
-                      <td className="py-3 font-bold text-white text-sm">
-                        {m.movement_type === 'IN' ? `+${m.quantity}` : `-${m.quantity}`}
+                      <td className="py-3 font-extrabold text-[#1E222B] text-sm">
+                        <span className={m.movement_type === 'IN' ? 'text-[#1E8A38]' : 'text-[#C47D0B]'}>
+                          {m.movement_type === 'IN' ? `+${m.quantity}` : `-${m.quantity}`}
+                        </span>
                       </td>
-                      <td className="py-3 text-slate-300 max-w-[220px] truncate">{m.reason}</td>
-                      <td className="py-3 text-slate-400">{m.created_by_name || 'System'}</td>
-                      <td className="py-3 text-slate-400 font-mono">{formatDateTime(m.created_at)}</td>
+                      <td className="py-3 text-[#49484D] max-w-[220px] truncate font-medium">{m.reason}</td>
+                      <td className="py-3 text-[#77767D]">{m.created_by_name || 'System'}</td>
+                      <td className="py-3 text-[#77767D] font-mono">{formatDateTime(m.created_at)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -249,13 +249,13 @@ export const ProductDetailPage = () => {
         maxWidth="max-w-md"
       >
         <form onSubmit={handleStockSubmit} className="space-y-4">
-          <div className="p-3.5 rounded-xl bg-slate-850 border border-slate-800 flex items-center justify-between text-xs">
-            <span className="text-slate-400">Current Stock:</span>
-            <span className="font-extrabold text-white text-sm">{product.current_stock} units</span>
+          <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB] flex items-center justify-between text-xs font-bold">
+            <span className="text-[#77767D]">Current Stock:</span>
+            <span className="font-extrabold text-[#1E222B] text-sm">{product.current_stock} units</span>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
               Quantity to {stockType === 'IN' ? 'Add' : 'Remove'} *
             </label>
             <input
@@ -265,12 +265,12 @@ export const ProductDetailPage = () => {
               required
               value={quantity}
               onChange={(e) => setQuantity(parseInt(e.target.value, 10) || 1)}
-              className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              className="ds-input font-bold"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
               Reason / Reference *
             </label>
             <input
@@ -279,26 +279,22 @@ export const ProductDetailPage = () => {
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               placeholder="e.g. Factory Batch Receipt or Manual Adjustment"
-              className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              className="ds-input font-medium"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EEF0F6]">
             <button
               type="button"
               onClick={() => setIsStockModalOpen(false)}
-              className="px-4 py-2 text-sm font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+              className="btn-outlined"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submittingStock}
-              className={`px-5 py-2 text-sm font-bold text-white rounded-xl shadow-lg transition-colors disabled:opacity-50 ${
-                stockType === 'IN'
-                  ? 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-950/40'
-                  : 'bg-amber-600 hover:bg-amber-500 shadow-amber-950/40'
-              }`}
+              className={stockType === 'IN' ? 'btn-primary' : 'btn-secondary'}
             >
               {submittingStock ? 'Recording...' : `Confirm Stock ${stockType}`}
             </button>

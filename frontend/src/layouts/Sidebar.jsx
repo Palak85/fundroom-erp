@@ -58,62 +58,62 @@ export const Sidebar = ({ isOpen, onClose }) => {
       {/* Mobile Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-[#1E222B]/60 backdrop-blur-sm z-40 lg:hidden"
           onClick={onClose}
         />
       )}
 
       {/* Sidebar Panel */}
       <aside
-        className={`fixed top-0 left-0 bottom-0 z-40 w-64 bg-slate-950 border-r border-slate-800 flex flex-col transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 bottom-0 z-40 w-64 bg-white border-r border-[#DCE0EB] flex flex-col transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } no-print`}
+        } no-print shadow-sm`}
       >
         {/* Brand Header */}
-        <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800 bg-slate-950">
+        <div className="h-16 flex items-center justify-between px-6 border-b border-[#EEF0F6]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-950/50">
-              <Layers className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-2xl bg-[#5E72C6] flex items-center justify-center shadow-btn text-white">
+              <Layers className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="font-extrabold text-base tracking-tight text-white flex items-center gap-1.5">
-                FundRoom <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30">ERP</span>
+              <h1 className="font-extrabold text-base tracking-tight text-[#1E222B] flex items-center gap-1.5">
+                FundRoom <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#EEF2FC] text-[#5E72C6] font-bold border border-[#D5DEF7]">ERP</span>
               </h1>
-              <p className="text-[10px] text-slate-400 font-medium">Wholesale Ops Portal</p>
+              <p className="text-[10px] text-[#77767D] font-medium">Operations Portal</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+            className="lg:hidden p-1.5 rounded-xl text-[#77767D] hover:text-[#1E222B] hover:bg-[#EEF0F6]"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* User Role Card */}
-        <div className="p-4 mx-3 my-3 rounded-xl bg-slate-900/80 border border-slate-800/80">
-          <div className="text-xs text-slate-400 mb-1 font-medium">Logged in as:</div>
-          <div className="font-bold text-sm text-white truncate">{user?.name || 'User'}</div>
+        <div className="p-4 mx-4 my-3 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB]">
+          <div className="text-xs text-[#77767D] mb-0.5 font-semibold">Active Session</div>
+          <div className="font-bold text-sm text-[#1E222B] truncate">{user?.name || 'User'}</div>
           <div className="mt-2 flex items-center justify-between">
             <Badge variant={role} size="sm">
               {role}
             </Badge>
-            <span className="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+            <span className="text-[11px] text-[#5E72C6] font-bold flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#5E72C6] animate-ping" />
               Online
             </span>
           </div>
         </div>
 
         {/* Navigation items */}
-        <nav className="flex-1 overflow-y-auto px-3 py-2 space-y-6">
+        <nav className="flex-1 overflow-y-auto px-3 py-2 space-y-5">
           {navSections.map((section, idx) => {
             const filteredItems = section.items.filter((item) => item.roles.includes(role));
             if (filteredItems.length === 0) return null;
 
             return (
               <div key={idx}>
-                <div className="px-3 text-[10px] font-bold text-slate-400 tracking-wider mb-2 uppercase">
+                <div className="px-3 text-[10px] font-bold text-[#77767D] tracking-wider mb-1.5 uppercase">
                   {section.title}
                 </div>
                 <div className="space-y-1">
@@ -127,10 +127,10 @@ export const Sidebar = ({ isOpen, onClose }) => {
                           if (window.innerWidth < 1024) onClose();
                         }}
                         className={({ isActive }) =>
-                          `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                          `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
                             isActive
-                              ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-950/40 font-semibold'
-                              : 'text-slate-400 hover:text-slate-100 hover:bg-slate-850'
+                              ? 'bg-[#5E72C6] text-white shadow-btn'
+                              : 'text-[#49484D] hover:text-[#1E222B] hover:bg-[#EEF0F6]'
                           }`
                         }
                       >
@@ -146,8 +146,8 @@ export const Sidebar = ({ isOpen, onClose }) => {
         </nav>
 
         {/* Footer info */}
-        <div className="p-4 border-t border-slate-800 text-[11px] text-slate-400 text-center">
-          Mini ERP + CRM v1.0.0
+        <div className="p-4 border-t border-[#EEF0F6] text-[11px] text-[#77767D] text-center font-medium">
+          Mini ERP + CRM • Design System
         </div>
       </aside>
     </>

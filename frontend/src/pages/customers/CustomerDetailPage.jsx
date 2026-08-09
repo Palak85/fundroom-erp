@@ -17,8 +17,7 @@ import {
   Calendar,
   Plus,
   MessageSquare,
-  FileCheck2,
-  FileSpreadsheet
+  FileCheck2
 } from 'lucide-react';
 
 export const CustomerDetailPage = () => {
@@ -96,15 +95,15 @@ export const CustomerDetailPage = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/customers"
-            className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+            className="p-2.5 rounded-2xl bg-white border border-[#DCE0EB] text-[#2D3139] hover:bg-[#EEF0F6] transition-colors shadow-sm"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#5E72C6] uppercase tracking-wider">
               Customer Profile
             </div>
-            <h2 className="text-2xl font-black text-white flex items-center gap-3">
+            <h2 className="text-2xl font-extrabold text-[#1E222B] flex items-center gap-3">
               {customer.customer_name}
               <Badge variant={customer.status} size="sm" />
             </h2>
@@ -115,9 +114,9 @@ export const CustomerDetailPage = () => {
           {canAddFollowup && (
             <button
               onClick={() => setIsFollowupModalOpen(true)}
-              className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-xs rounded-xl flex items-center gap-2 transition-all"
+              className="btn-secondary"
             >
-              <Calendar className="w-4 h-4 text-amber-400" />
+              <Calendar className="w-4 h-4 text-[#C47D0B]" />
               <span>Log Follow-up</span>
             </button>
           )}
@@ -125,7 +124,7 @@ export const CustomerDetailPage = () => {
           {hasRole('Admin', 'Sales') && (
             <Link
               to={`/challans/new?customer_id=${customer.id}`}
-              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-950/40 flex items-center gap-2 transition-all"
+              className="btn-primary"
             >
               <FileCheck2 className="w-4 h-4" />
               <span>Create Challan</span>
@@ -137,52 +136,52 @@ export const CustomerDetailPage = () => {
       {/* Customer Information Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Contact & Business Info */}
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
-          <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Account Overview</h3>
+        <div className="bg-white border border-[#DCE0EB] rounded-3xl p-6 shadow-card space-y-4">
+          <h3 className="text-xs font-bold text-[#77767D] uppercase tracking-wider">Account Overview</h3>
 
           <div className="space-y-3 text-sm">
-            <div className="p-3.5 rounded-2xl bg-slate-850/60 border border-slate-800">
-              <span className="text-xs text-slate-400 font-medium">Business / Enterprise</span>
-              <div className="font-bold text-white text-base mt-0.5 flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-emerald-400" />
+            <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB]">
+              <span className="text-xs text-[#77767D] font-bold">Business / Enterprise</span>
+              <div className="font-extrabold text-[#1E222B] text-base mt-0.5 flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-[#5E72C6]" />
                 {customer.business_name || 'Individual Client'}
               </div>
               {customer.gst_number && (
-                <div className="text-xs font-mono text-slate-400 mt-1">
-                  GSTIN: <span className="text-slate-200 font-bold">{customer.gst_number}</span>
+                <div className="text-xs font-mono text-[#77767D] mt-1">
+                  GSTIN: <span className="text-[#1E222B] font-bold">{customer.gst_number}</span>
                 </div>
               )}
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-850/60 border border-slate-800 space-y-2">
+            <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB] space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs text-slate-400">Account Type</span>
+                <span className="text-xs text-[#77767D] font-semibold">Account Type</span>
                 <Badge variant={customer.customer_type} size="sm" />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-slate-400">Status</span>
+                <span className="text-xs text-[#77767D] font-semibold">Status</span>
                 <Badge variant={customer.status} size="sm" />
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-850/60 border border-slate-800 space-y-2">
-              <span className="text-xs text-slate-400 font-medium">Direct Contact</span>
-              <div className="flex items-center gap-2 text-white font-semibold">
-                <Phone className="w-4 h-4 text-emerald-400" />
+            <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB] space-y-2">
+              <span className="text-xs text-[#77767D] font-bold">Direct Contact</span>
+              <div className="flex items-center gap-2 text-[#1E222B] font-extrabold">
+                <Phone className="w-4 h-4 text-[#5E72C6]" />
                 <span>{customer.mobile}</span>
               </div>
               {customer.email && (
-                <div className="flex items-center gap-2 text-slate-300 text-xs truncate">
-                  <Mail className="w-4 h-4 text-blue-400" />
+                <div className="flex items-center gap-2 text-[#77767D] text-xs font-semibold truncate">
+                  <Mail className="w-4 h-4 text-[#5E72C6]" />
                   <span>{customer.email}</span>
                 </div>
               )}
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-850/60 border border-slate-800">
-              <span className="text-xs text-slate-400 font-medium">Billing & Shipping Address</span>
-              <div className="flex items-start gap-2 text-slate-300 text-xs mt-1">
-                <MapPin className="w-4 h-4 text-rose-400 flex-shrink-0 mt-0.5" />
+            <div className="p-4 rounded-2xl bg-[#EEF0F6] border border-[#DCE0EB]">
+              <span className="text-xs text-[#77767D] font-bold">Billing & Shipping Address</span>
+              <div className="flex items-start gap-2 text-[#2D3139] text-xs mt-1 font-medium">
+                <MapPin className="w-4 h-4 text-[#D30F38] flex-shrink-0 mt-0.5" />
                 <span>{customer.address || 'No address specified'}</span>
               </div>
             </div>
@@ -190,19 +189,19 @@ export const CustomerDetailPage = () => {
         </div>
 
         {/* CRM Follow-up Timeline & Notes */}
-        <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col">
+        <div className="lg:col-span-2 bg-white border border-[#DCE0EB] rounded-3xl p-6 shadow-card flex flex-col">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-emerald-400" />
+              <h3 className="text-base font-extrabold text-[#1E222B] flex items-center gap-2">
+                <MessageSquare className="w-5 h-5 text-[#5E72C6]" />
                 CRM Follow-up Timeline
               </h3>
-              <p className="text-xs text-slate-400">Communication history and scheduled interactions</p>
+              <p className="text-xs text-[#77767D] font-medium">Communication history and scheduled interactions</p>
             </div>
 
-            <div className="flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700">
-              <Calendar className="w-4 h-4 text-amber-400" />
-              <span className="text-xs font-semibold text-white">
+            <div className="flex items-center gap-2 bg-[#EEF0F6] px-3.5 py-2 rounded-xl border border-[#DCE0EB]">
+              <Calendar className="w-4 h-4 text-[#C47D0B]" />
+              <span className="text-xs font-bold text-[#1E222B]">
                 Next: {customer.follow_up_date ? formatDate(customer.follow_up_date) : 'Not Scheduled'}
               </span>
             </div>
@@ -211,33 +210,33 @@ export const CustomerDetailPage = () => {
           {/* Timeline List */}
           <div className="flex-1 space-y-4">
             {followups.length === 0 ? (
-              <div className="py-12 text-center text-slate-400 text-sm">
+              <div className="py-12 text-center text-[#77767D] text-sm font-medium">
                 No follow-up interactions logged yet. Click "Log Follow-up" to record communication.
               </div>
             ) : (
-              <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-800">
+              <div className="relative pl-6 space-y-5 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#EEF0F6]">
                 {followups.map((f) => (
                   <div key={f.id} className="relative group">
                     {/* Dot */}
-                    <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-slate-900" />
+                    <div className="absolute -left-6 top-2 w-3 h-3 rounded-full bg-[#5E72C6] ring-4 ring-white shadow-sm" />
 
-                    <div className="p-4 rounded-2xl bg-slate-850/80 border border-slate-800 group-hover:border-slate-700 transition-all">
+                    <div className="p-4.5 rounded-2xl bg-[#F9FAFD] border border-[#EEF0F6] group-hover:border-[#DCE0EB] transition-all">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-bold text-emerald-400">
+                          <span className="text-xs font-extrabold text-[#5E72C6]">
                             Follow-up Date: {formatDate(f.follow_up_date)}
                           </span>
                           {f.created_by_user?.name && (
-                            <span className="text-[11px] text-slate-400">
-                              by <strong className="text-slate-300">{f.created_by_user.name}</strong>
+                            <span className="text-[11px] text-[#77767D]">
+                              by <strong className="text-[#1E222B]">{f.created_by_user.name}</strong>
                             </span>
                           )}
                         </div>
-                        <span className="text-[11px] font-mono text-slate-400">
+                        <span className="text-[11px] font-mono text-[#77767D]">
                           {formatDateTime(f.created_at)}
                         </span>
                       </div>
-                      <p className="text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">
+                      <p className="text-sm text-[#2D3139] leading-relaxed whitespace-pre-wrap font-medium">
                         {f.notes}
                       </p>
                     </div>
@@ -258,7 +257,7 @@ export const CustomerDetailPage = () => {
       >
         <form onSubmit={handleAddFollowup} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
               Next Scheduled Follow-up Date *
             </label>
             <input
@@ -266,12 +265,12 @@ export const CustomerDetailPage = () => {
               required
               value={followupForm.follow_up_date}
               onChange={(e) => setFollowupForm({ ...followupForm, follow_up_date: e.target.value })}
-              className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              className="ds-input font-medium"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
               Follow-up Discussion Notes *
             </label>
             <textarea
@@ -279,23 +278,23 @@ export const CustomerDetailPage = () => {
               rows={4}
               value={followupForm.notes}
               onChange={(e) => setFollowupForm({ ...followupForm, notes: e.target.value })}
-              placeholder="e.g. Discussed pricing for copper cable spools. Customer requested delivery schedule."
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              placeholder="e.g. Discussed bulk discount pricing for drills. Client requested revised delivery quote."
+              className="ds-input"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EEF0F6]">
             <button
               type="button"
               onClick={() => setIsFollowupModalOpen(false)}
-              className="px-4 py-2 text-sm font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+              className="btn-outlined"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submittingFollowup}
-              className="px-5 py-2 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-950/40 transition-colors disabled:opacity-50"
+              className="btn-primary"
             >
               {submittingFollowup ? 'Saving...' : 'Save Follow-up'}
             </button>

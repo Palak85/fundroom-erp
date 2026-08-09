@@ -18,20 +18,20 @@ export const ConfirmDialog = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title} maxWidth="max-w-md">
       <div className="flex items-start gap-4">
-        <div className={`p-3 rounded-xl flex-shrink-0 ${isDanger ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
+        <div className={`p-3 rounded-2xl flex-shrink-0 ${isDanger ? 'bg-[#FDF2F4] text-[#D30F38] border border-[#F9CCD4]' : 'bg-[#EEF2FC] text-[#5E72C6] border border-[#D5DEF7]'}`}>
           {isDanger ? <AlertTriangle className="w-6 h-6" /> : <Info className="w-6 h-6" />}
         </div>
         <div className="flex-1">
-          <p className="text-sm text-slate-300 leading-relaxed">{message}</p>
+          <p className="text-sm text-[#2D3139] leading-relaxed font-medium">{message}</p>
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+      <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-[#EEF0F6]">
         <button
           type="button"
           onClick={onClose}
           disabled={loading}
-          className="px-4 py-2 text-sm font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors disabled:opacity-50"
+          className="btn-outlined"
         >
           {cancelText}
         </button>
@@ -39,11 +39,7 @@ export const ConfirmDialog = ({
           type="button"
           onClick={onConfirm}
           disabled={loading}
-          className={`px-4 py-2 text-sm font-semibold text-white rounded-xl transition-colors disabled:opacity-50 flex items-center gap-2 ${
-            isDanger
-              ? 'bg-rose-600 hover:bg-rose-500 shadow-lg shadow-rose-600/20'
-              : 'bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/20'
-          }`}
+          className={isDanger ? 'btn-danger' : 'btn-primary'}
         >
           {loading ? 'Processing...' : confirmText}
         </button>

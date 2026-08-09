@@ -21,8 +21,7 @@ import {
   Mail,
   Building2,
   Calendar,
-  Filter,
-  FileText
+  Filter
 } from 'lucide-react';
 
 export const CustomersPage = () => {
@@ -158,14 +157,14 @@ export const CustomersPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#5E72C6] uppercase tracking-wider mb-1">
             CRM Core
           </div>
-          <h2 className="text-2xl font-black text-white flex items-center gap-2">
-            <Users2 className="w-7 h-7 text-emerald-400" />
+          <h2 className="text-2xl font-extrabold text-[#1E222B] flex items-center gap-2">
+            <Users2 className="w-7 h-7 text-[#5E72C6]" />
             Customer Directory
           </h2>
-          <p className="text-sm text-slate-400 mt-0.5">
+          <p className="text-sm text-[#77767D] mt-0.5 font-medium">
             Manage wholesale, distributor & retail client accounts and sales relationships
           </p>
         </div>
@@ -173,7 +172,7 @@ export const CustomersPage = () => {
         {canEdit && (
           <button
             onClick={handleOpenAddModal}
-            className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-950/40 flex items-center gap-2 transition-all"
+            className="btn-primary"
           >
             <Plus className="w-4 h-4" />
             <span>Add New Customer</span>
@@ -182,7 +181,7 @@ export const CustomersPage = () => {
       </div>
 
       {/* Filters & Search Bar */}
-      <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="p-4 rounded-3xl bg-white border border-[#DCE0EB] shadow-card flex flex-col md:flex-row gap-4 items-center justify-between">
         <SearchInput
           value={search}
           onChange={(val) => {
@@ -194,8 +193,8 @@ export const CustomersPage = () => {
 
         <div className="flex items-center gap-3 w-full md:w-auto">
           <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-slate-400" />
-            <span className="text-xs font-semibold text-slate-400 uppercase">Filters:</span>
+            <Filter className="w-4 h-4 text-[#77767D]" />
+            <span className="text-xs font-bold text-[#77767D] uppercase">Filters:</span>
           </div>
 
           <select
@@ -204,7 +203,7 @@ export const CustomersPage = () => {
               setStatus(e.target.value);
               setPage(1);
             }}
-            className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="px-3 py-2 bg-[#EEF0F6] border border-[#DCE0EB] rounded-xl text-xs font-bold text-[#1E222B] focus:outline-none focus:ring-2 focus:ring-[#5E72C6]/20"
           >
             <option value="">All Statuses</option>
             <option value="Active">Active</option>
@@ -218,7 +217,7 @@ export const CustomersPage = () => {
               setCustomerType(e.target.value);
               setPage(1);
             }}
-            className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="px-3 py-2 bg-[#EEF0F6] border border-[#DCE0EB] rounded-xl text-xs font-bold text-[#1E222B] focus:outline-none focus:ring-2 focus:ring-[#5E72C6]/20"
           >
             <option value="">All Types</option>
             <option value="Wholesale">Wholesale</option>
@@ -228,8 +227,8 @@ export const CustomersPage = () => {
         </div>
       </div>
 
-      {/* Customer Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+      {/* Customer Table Card */}
+      <div className="bg-white border border-[#DCE0EB] rounded-3xl overflow-hidden shadow-card">
         {loading ? (
           <LoadingSpinner text="Fetching customer directory..." />
         ) : customers.length === 0 ? (
@@ -240,7 +239,7 @@ export const CustomersPage = () => {
               canEdit ? (
                 <button
                   onClick={handleOpenAddModal}
-                  className="mt-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-xl"
+                  className="mt-2 btn-primary"
                 >
                   Create First Customer
                 </button>
@@ -250,46 +249,46 @@ export const CustomersPage = () => {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-850/80 border-b border-slate-800 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+              <thead className="bg-[#F9FAFD] border-b border-[#EEF0F6] text-[#77767D] text-xs font-bold uppercase tracking-wider">
                 <tr>
-                  <th className="py-3.5 px-6">Customer & Business</th>
-                  <th className="py-3.5 px-4">Contact Info</th>
-                  <th className="py-3.5 px-4">Type</th>
-                  <th className="py-3.5 px-4">Status</th>
-                  <th className="py-3.5 px-4">Follow-up</th>
-                  <th className="py-3.5 px-6 text-right">Actions</th>
+                  <th className="py-4 px-6">Customer & Business</th>
+                  <th className="py-4 px-4">Contact Info</th>
+                  <th className="py-4 px-4">Type</th>
+                  <th className="py-4 px-4">Status</th>
+                  <th className="py-4 px-4">Follow-up</th>
+                  <th className="py-4 px-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-[#EEF0F6] text-[#2D3139]">
                 {customers.map((c) => (
-                  <tr key={c.id} className="hover:bg-slate-850/40 transition-colors">
+                  <tr key={c.id} className="hover:bg-[#F9FAFD] transition-colors">
                     <td className="py-4 px-6">
-                      <div className="font-bold text-white text-base">
-                        <Link to={`/customers/${c.id}`} className="hover:text-emerald-400 transition-colors">
+                      <div className="font-extrabold text-[#1E222B] text-base">
+                        <Link to={`/customers/${c.id}`} className="hover:text-[#5E72C6] transition-colors">
                           {c.customer_name}
                         </Link>
                       </div>
                       {c.business_name && (
-                        <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5">
-                          <Building2 className="w-3.5 h-3.5 text-slate-400" />
+                        <div className="flex items-center gap-1.5 text-xs text-[#77767D] font-medium mt-0.5">
+                          <Building2 className="w-3.5 h-3.5" />
                           <span>{c.business_name}</span>
                         </div>
                       )}
                       {c.gst_number && (
-                        <div className="text-[11px] font-mono text-slate-400 mt-0.5">
+                        <div className="text-[11px] font-mono text-[#77767D] mt-0.5">
                           GST: {c.gst_number}
                         </div>
                       )}
                     </td>
 
                     <td className="py-4 px-4 text-xs space-y-1">
-                      <div className="flex items-center gap-1.5 text-slate-200">
-                        <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                      <div className="flex items-center gap-1.5 font-bold text-[#1E222B]">
+                        <Phone className="w-3.5 h-3.5 text-[#5E72C6]" />
                         <span>{c.mobile}</span>
                       </div>
                       {c.email && (
-                        <div className="flex items-center gap-1.5 text-slate-400 truncate max-w-[180px]">
-                          <Mail className="w-3.5 h-3.5 text-blue-400" />
+                        <div className="flex items-center gap-1.5 text-[#77767D] font-medium truncate max-w-[180px]">
+                          <Mail className="w-3.5 h-3.5 text-[#5E72C6]" />
                           <span>{c.email}</span>
                         </div>
                       )}
@@ -305,12 +304,12 @@ export const CustomersPage = () => {
 
                     <td className="py-4 px-4 text-xs">
                       {c.follow_up_date ? (
-                        <div className="flex items-center gap-1.5 text-amber-400 font-medium">
+                        <div className="flex items-center gap-1.5 text-[#C47D0B] font-bold">
                           <Calendar className="w-3.5 h-3.5" />
                           <span>{formatDate(c.follow_up_date)}</span>
                         </div>
                       ) : (
-                        <span className="text-slate-400">None scheduled</span>
+                        <span className="text-[#77767D]">None scheduled</span>
                       )}
                     </td>
 
@@ -318,8 +317,8 @@ export const CustomersPage = () => {
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           to={`/customers/${c.id}`}
-                          title="View Details & Follow-up Timeline"
-                          className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                          title="View Details"
+                          className="p-2 rounded-xl bg-[#EEF0F6] hover:bg-[#E4E7F2] text-[#2D3139] hover:text-[#5E72C6] transition-colors"
                         >
                           <Eye className="w-4 h-4" />
                         </Link>
@@ -328,7 +327,7 @@ export const CustomersPage = () => {
                           <button
                             onClick={() => handleOpenEditModal(c)}
                             title="Edit Customer"
-                            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-emerald-400 transition-colors"
+                            className="p-2 rounded-xl bg-[#EEF0F6] hover:bg-[#E4E7F2] text-[#2D3139] hover:text-[#5E72C6] transition-colors"
                           >
                             <Edit2 className="w-4 h-4" />
                           </button>
@@ -338,7 +337,7 @@ export const CustomersPage = () => {
                           <button
                             onClick={() => setDeleteDialog({ isOpen: true, customer: c, loading: false })}
                             title="Delete Customer"
-                            className="p-2 rounded-xl bg-slate-800 hover:bg-rose-500/20 text-slate-300 hover:text-rose-400 transition-colors"
+                            className="p-2 rounded-xl bg-[#FDF2F4] hover:bg-[#F9CCD4] text-[#D30F38] transition-colors"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -353,7 +352,7 @@ export const CustomersPage = () => {
         )}
 
         {/* Pagination Bar */}
-        <div className="p-4 border-t border-slate-800">
+        <div className="p-4 border-t border-[#EEF0F6]">
           <Pagination pagination={pagination} onPageChange={(p) => setPage(p)} />
         </div>
       </div>
@@ -362,13 +361,13 @@ export const CustomersPage = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={editingCustomer ? 'Edit Customer Record' : 'Create New Customer Account'}
+        title={editingCustomer ? 'Edit Customer Profile' : 'Create New Customer Account'}
         maxWidth="max-w-2xl"
       >
         <form onSubmit={handleSubmitForm} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Customer Name *
               </label>
               <input
@@ -377,12 +376,12 @@ export const CustomersPage = () => {
                 value={formData.customer_name}
                 onChange={(e) => setFormData({ ...formData, customer_name: e.target.value })}
                 placeholder="e.g. Rajesh Sharma"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Mobile Number *
               </label>
               <input
@@ -391,14 +390,14 @@ export const CustomersPage = () => {
                 value={formData.mobile}
                 onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                 placeholder="+91 98765 43210"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Email Address
               </label>
               <input
@@ -406,12 +405,12 @@ export const CustomersPage = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="rajesh@hardware.com"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Business / Company Name
               </label>
               <input
@@ -419,14 +418,14 @@ export const CustomersPage = () => {
                 value={formData.business_name}
                 onChange={(e) => setFormData({ ...formData, business_name: e.target.value })}
                 placeholder="Sharma Hardware & Supplies"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 GST Number
               </label>
               <input
@@ -434,18 +433,18 @@ export const CustomersPage = () => {
                 value={formData.gst_number}
                 onChange={(e) => setFormData({ ...formData, gst_number: e.target.value })}
                 placeholder="27AAACS1234A1Z5"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white font-mono uppercase focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-mono uppercase"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Customer Type *
               </label>
               <select
                 value={formData.customer_type}
                 onChange={(e) => setFormData({ ...formData, customer_type: e.target.value })}
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-bold"
               >
                 <option value="Wholesale">Wholesale</option>
                 <option value="Distributor">Distributor</option>
@@ -454,13 +453,13 @@ export const CustomersPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Status *
               </label>
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-bold"
               >
                 <option value="Lead">Lead</option>
                 <option value="Active">Active</option>
@@ -470,7 +469,7 @@ export const CustomersPage = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
               Billing & Delivery Address
             </label>
             <textarea
@@ -478,48 +477,48 @@ export const CustomersPage = () => {
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
               placeholder="Plot / Street / Industrial Area / City / State / PIN"
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              className="ds-input"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Next Follow-up Date
               </label>
               <input
                 type="date"
                 value={formData.follow_up_date}
                 onChange={(e) => setFormData({ ...formData, follow_up_date: e.target.value })}
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                className="ds-input font-medium"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#49484D] uppercase mb-1.5">
                 Internal CRM Notes
               </label>
               <input
                 type="text"
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                placeholder="e.g. Needs floodlights quote"
-                className="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                placeholder="e.g. Needs quotation for bulk floodlights"
+                className="ds-input font-medium"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#EEF0F6]">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2.5 text-sm font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+              className="btn-outlined"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2.5 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-950/40 transition-colors"
+              className="btn-primary"
             >
               {editingCustomer ? 'Update Customer' : 'Save Customer Account'}
             </button>
@@ -534,7 +533,7 @@ export const CustomersPage = () => {
         onConfirm={handleDeleteCustomer}
         loading={deleteDialog.loading}
         title="Delete Customer Account"
-        message={`Are you sure you want to permanently delete "${deleteDialog.customer?.customer_name}"? This will also remove associated follow-up logs.`}
+        message={`Are you sure you want to permanently delete "${deleteDialog.customer?.customer_name}"?`}
         confirmText="Delete Account"
         type="danger"
       />

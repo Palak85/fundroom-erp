@@ -4,30 +4,71 @@
 
 @layer base {
   body {
-    @apply bg-slate-900 text-slate-100;
+    @apply bg-canvas text-[#1E222B] font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-[#1E222B] tracking-tight;
   }
 }
 
-/* Custom scrollbar */
+@layer components {
+  /* Button Styles from Design System */
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-600 active:bg-primary-700 text-white font-semibold px-4 py-2.5 rounded-xl shadow-btn transition-all duration-200 inline-flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-[#EFF1F7] hover:bg-[#E4E7F2] active:bg-[#D9DEEE] text-[#2D3139] font-semibold px-4 py-2.5 rounded-xl transition-all duration-200 inline-flex items-center justify-center gap-2 text-sm border border-transparent hover:border-[#D0D6E8];
+  }
+
+  .btn-inverted {
+    @apply bg-[#2D3139] hover:bg-[#1F2228] active:bg-[#14161A] text-white font-semibold px-4 py-2.5 rounded-xl transition-all duration-200 inline-flex items-center justify-center gap-2 text-sm;
+  }
+
+  .btn-outlined {
+    @apply bg-white hover:bg-[#F6F8FC] text-[#2D3139] font-semibold px-4 py-2.5 rounded-xl border border-[#DCE0EB] hover:border-[#5E72C6] transition-all duration-200 inline-flex items-center justify-center gap-2 text-sm;
+  }
+
+  .btn-tertiary, .btn-danger {
+    @apply bg-tertiary hover:bg-tertiary-600 active:bg-tertiary-700 text-white font-semibold px-4 py-2.5 rounded-xl shadow-danger-btn transition-all duration-200 inline-flex items-center justify-center gap-2 text-sm disabled:opacity-50;
+  }
+
+  /* Card Containers from Design System */
+  .ds-card {
+    @apply bg-white border border-[#DCE0EB] rounded-3xl p-6 shadow-card;
+  }
+
+  .ds-card-compact {
+    @apply bg-white border border-[#DCE0EB] rounded-2xl p-4 shadow-card;
+  }
+
+  /* Search & Form Inputs */
+  .ds-input {
+    @apply w-full bg-[#EEF0F6] border border-transparent focus:border-[#5E72C6] focus:bg-white text-[#1E222B] placeholder-[#77767D] text-sm rounded-xl px-4 py-2.5 transition-all outline-none;
+  }
+}
+
+/* Custom modern scrollbar matching the design system */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #E4E7F0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #B0BCE9;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #5E72C6;
 }
 
-/* Print Styles for Challan Invoice / PDF View */
+/* Print Styles */
 @media print {
   body {
     background: white !important;
@@ -43,9 +84,5 @@
     width: 100% !important;
     background: white !important;
     color: black !important;
-  }
-  .printable-card * {
-    color: black !important;
-    border-color: #cbd5e1 !important;
   }
 }

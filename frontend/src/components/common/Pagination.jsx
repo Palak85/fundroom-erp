@@ -9,18 +9,18 @@ export const Pagination = ({ pagination, onPageChange }) => {
   const endItem = Math.min(page * limit, total);
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-2 text-sm text-slate-400">
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-3 px-2 text-sm text-[#77767D]">
       <div>
-        Showing <span className="font-semibold text-white">{startItem}</span> to{' '}
-        <span className="font-semibold text-white">{endItem}</span> of{' '}
-        <span className="font-semibold text-white">{total}</span> results
+        Showing <span className="font-bold text-[#1E222B]">{startItem}</span> to{' '}
+        <span className="font-bold text-[#1E222B]">{endItem}</span> of{' '}
+        <span className="font-bold text-[#1E222B]">{total}</span> results
       </div>
 
       <div className="flex items-center gap-1.5">
         <button
           onClick={() => onPageChange(page - 1)}
           disabled={page <= 1}
-          className="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="p-2 rounded-xl bg-white border border-[#DCE0EB] text-[#2D3139] hover:bg-[#EEF0F6] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -31,13 +31,13 @@ export const Pagination = ({ pagination, onPageChange }) => {
             const showEllipsis = idx > 0 && p - arr[idx - 1] > 1;
             return (
               <React.Fragment key={p}>
-                {showEllipsis && <span className="px-2 text-slate-600">...</span>}
+                {showEllipsis && <span className="px-2 text-[#77767D]">...</span>}
                 <button
                   onClick={() => onPageChange(p)}
-                  className={`min-w-[36px] h-9 px-3 rounded-lg text-xs font-bold border transition-colors ${
+                  className={`min-w-[36px] h-9 px-3 rounded-xl text-xs font-bold border transition-colors shadow-sm ${
                     p === page
-                      ? 'bg-emerald-600 border-emerald-500 text-white shadow-md shadow-emerald-950/40'
-                      : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-[#5E72C6] border-[#5E72C6] text-white shadow-btn'
+                      : 'bg-white border-[#DCE0EB] text-[#2D3139] hover:bg-[#EEF0F6]'
                   }`}
                 >
                   {p}
@@ -49,7 +49,7 @@ export const Pagination = ({ pagination, onPageChange }) => {
         <button
           onClick={() => onPageChange(page + 1)}
           disabled={page >= totalPages}
-          className="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="p-2 rounded-xl bg-white border border-[#DCE0EB] text-[#2D3139] hover:bg-[#EEF0F6] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
