@@ -4,6 +4,13 @@ A production-quality **Mini ERP + CRM Operations Portal** engineered for wholesa
 
 ---
 
+## 🔗 Project Links
+
+- **Live Application:** https://fundroom-erp.vercel.app/login
+- **Backend API:** https://fundroom-backend.onrender.com
+- **GitHub Repository:** https://github.com/Palak85/fundromm-erp/
+- **Documentation:** https://github.com/Palak85/fundroom-erp#readme
+
 ## 🌟 Key Highlights & Features
 
 ### 1. 🔐 Authentication & Role-Based Access Control (RBAC)
