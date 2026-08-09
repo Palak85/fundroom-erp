@@ -8,7 +8,7 @@ A production-quality **Mini ERP + CRM Operations Portal** engineered for wholesa
 
 - **Live Application:** https://fundroom-erp.vercel.app/login
 - **Backend API:** https://fundroom-backend.onrender.com
-- **GitHub Repository:** https://github.com/Palak85/fundromm-erp
+- **GitHub Repository:** https://github.com/Palak85/fundrom-erp
 - **Documentation:** https://github.com/Palak85/fundroom-erp#readme
 
 ## 🌟 Key Highlights & Features
